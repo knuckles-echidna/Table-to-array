@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Table to array function</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+      <div class="container">
+	      <div class="row">
+	            <div class="col-sm-12 col-lg-6">
+	                <h1>Input table</h1>
+				        <table id="contents" class="table table-striped table-hover table-bordered table-dark">
+				            <tbody>
+				                <tr>
+				                    <td>Region</td>
+				                    <td>2014 - Zużycie energii elektrycznej ogółem (GWh)</td>
+				                    <td>2015 - Zużycie energii elektrycznej ogółem (GWh)</td>
+				                    <td>2016 - Zużycie energii elektrycznej ogółem (GWh)</td>
+				                </tr>
+					            <tr>
+					                <td>łódzkie</td>
+					                <td>11783</td>
+					                <td>12181</td>
+					                <td>12324</td>
+					            </tr>
+					            <tr>
+					                <td>małopolskie</td>
+					                <td>12394</td>
+					                <td>12456</td>
+					                <td>13007</td>
+					            </tr>
+					            <tr>
+					                <td>mazowieckie</td>
+					                <td>24243</td>
+					                <td>24937</td>
+					                <td>26073</td>
+					            </tr>
+					            <tr>
+					                <td>podkarpackie</td>
+					                <td>5143</td>
+					                <td>5312</td>
+					                <td>5464</td>
+					            </tr>
+					            <tr>
+					                <td>wielkopolskie</td>
+					                <td>11813</td>
+					                <td>12093</td>
+					                <td>12590</td>
+					            </tr>
+					        </tbody>
+				    </table>
+	    		</div>
+	    	<div class="col-sm-12 col-lg-6">
+		        <h1>Output</h1>
+		        <code id="output"></code> 
+	    	</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript">
+		function tableToArray(table) {
+		  var result = []
+		  var rows = table.rows;
+		  var cells, t;
+
+		  // Iterate over rows
+		  for (var i=0, iLen=rows.length; i<iLen; i++) {
+		    cells = rows[i].cells;
+		    t = [];
+
+		    // Iterate over cells
+		    for (var j=0, jLen=cells.length; j<jLen; j++) {
+		      t.push(cells[j].textContent);
+		    }
+		    result.push(t);
+		  }
+		  return result; 
+		}
+		   
+
+		$(document).ready(function(){
+		    $("#output").html(JSON.stringify(tableToArray(document.getElementsByTagName('table')[0])));
+		    
+		})
+	</script>
+</body>
+</html>
